@@ -39,17 +39,15 @@ function turnRight(rover){
 }
 
 function moveForward(rover){
-  switch (rover.direction){
-    case "N":
-      if (rover.y > 0){
-        if (grid[rover.y-1][rover.x] === "obstacle"){
-          console.log("There is an obstacle in your path");
-        } else {
-          rover.y -= 1;
-        }
+  if (rover.direction === 'N'){
+    if (rover.y > 0){
+      if (grid[rover.y-1][rover.x] === "obstacle"){
+        console.log("There is an obstacle in your path");
+      } else {
+        rover.y -= 1;
       }
-      break;
-    case "W":
+    }
+  } else if (rover.direction === 'W'){
       if (rover.x > 0){
         if (grid[rover.y][rover.x-1] === "obstacle"){
           console.log("There is an obstacle in your path");
@@ -57,17 +55,39 @@ function moveForward(rover){
           rover.x -= 1;
         }
       }
-      break;
-    case "S":
-      if (rover.y < 9){
-        if (grid[rover.y+1][rover.x] === "obstacle"){
-          console.log("There is an obstacle in your path");
-        } else {
-          rover.y += 1;
+    } else if (rover.direction === 'S'){
+        if (rover.y < 9){
+          if (grid[rover.y+1][rover.x] === "obstacle"){
+            console.log("There is an obstacle in your path");
+          } else {
+            rover.y += 1;
+          }
         }
+      } else if (rover.direction === 'E'){
+          if (rover.x < 9){
+            if (grid[rover.y][rover.x+1] === "obstacle"){
+              console.log("There is an obstacle in your path");
+            } else {
+              rover.x += 1;
+            }
+          }
+        } else {
+            console.log("invalid movement");
+          }
+    
+  console.log("Current coordinates: [" + rover.y + ", " + rover.x + "]");
+}
+
+function moveBackward(rover){
+  if (rover.direction === 'N'){
+    if (rover.y < 9){
+      if (grid[rover.y+1][rover.x] === "obstacle"){
+        console.log("There is an obstacle in your path");
+      } else {
+        rover.y += 1;
       }
-      break;
-    case "E":
+    }
+  } else if (rover.direction === 'W'){
       if (rover.x < 9){
         if (grid[rover.y][rover.x+1] === "obstacle"){
           console.log("There is an obstacle in your path");
@@ -75,40 +95,27 @@ function moveForward(rover){
           rover.x += 1;
         }
       }
-      break;
-    default:
-      console.log("invalid movement");
-      break;
-  }
-  console.log("Current coordinates: [" + rover.y + ", " + rover.x + "]");
-}
+    } else if (rover.direction === 'S'){
+        if (rover.y > 0){
+          if (grid[rover.y-1][rover.x] === "obstacle"){
+            console.log("There is an obstacle in your path");
+          } else {
+            rover.y -= 1;
+          }
+        }
+      } else if (rover.direction === 'E'){
+          if (rover.x > 0){
+            if (grid[rover.y][rover.x-1] === "obstacle"){
+              console.log("There is an obstacle in your path");
+            } else {
+              rover.x -= 1;
+            }
+          }
+        } else {
+            console.log("invalid movement");
+        }
 
-function moveBackward(rover){
-  switch (rover.direction){
-    case "N":
-      if (rover.y < 9){
-        rover.y += 1;
-      }
-      break;
-    case "W":
-      if (rover.x < 9){
-        rover.x += 1;
-      }
-      break;
-    case "S":
-      if (rover.y > 0){
-        rover.y -= 1;
-      }
-      break;
-    case "E":
-      if (rover.x > 0){
-        rover.x -= 1;
-      }
-      break;
-    default:
-      console.log("invalid movement");
-      break;
-  }
+  
   console.log("Current coordinates: [" + rover.y + ", " + rover.x + "]");
 }
 
@@ -132,6 +139,7 @@ function rotateRover (turn, rover){
           console.log("You are facing in an invalid direction");
           break;
       }
+      break;
     case "right":
       switch (rover.direction){
         case "N":
@@ -150,8 +158,10 @@ function rotateRover (turn, rover){
           console.log("You are facing in an invalid direction");
           break;
       }
-      default:
-    console.log("Please enter Left or Right");
+      break;
+    default:
+      console.log("Please enter Left or Right");
+      break;
   }
 }
 
