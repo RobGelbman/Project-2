@@ -113,46 +113,45 @@ function moveBackward(rover){
 }
 
 function rotateRover (turn, rover){
-  switch (rover.direction){
-    case "N":
-      if (turn === "left"){
-        rover.direction = "W";
-      } else if (turn === "right"){
-        rover.direction = "E";
-      } else {
-        console.log("Please enter Left or Right");
+  switch (turn){
+    case "left":
+      switch (rover.direction){
+        case "N":
+          rover.direction = "W";
+          break;
+        case "W":
+          rover.direction = "S";
+          break;
+        case "S":
+          rover.direction = "E";
+          break;
+        case "E":     
+          rover.direction = "N";
+          break;
+        default:
+          console.log("You are facing in an invalid direction");
+          break;
       }
-      break;
-    case "W":
-      if (turn === "left"){
-        rover.direction = "S";
-      } else if (turn === "right"){
-        rover.direction = "N";
-      } else {
-        console.log("Please enter Left or Right");
+    case "right":
+      switch (rover.direction){
+        case "N":
+          rover.direction = "E";
+          break;
+        case "W":
+          rover.direction = "N";
+          break;
+        case "S":
+          rover.direction = "W";
+          break;
+        case "E":      
+          rover.direction = "S";
+          break;
+        default:
+          console.log("You are facing in an invalid direction");
+          break;
       }
-      break;
-    case "S":
-      if (turn === "left"){
-        rover.direction = "E";
-      } else if (turn === "right"){
-        rover.direction = "W";
-      } else {
-        console.log("Please enter Left or Right");
-      }
-      break;
-    case "E":
-      if (turn === "left"){      
-        rover.direction = "N";
-      } else if (turn === "right"){
-        rover.direction = "S";
-      } else {
-        console.log("Please enter Left or Right");
-      }
-      break;
-    default:
-      console.log("You are facing in an invalid direction");
-      break;
+      default:
+    console.log("Please enter Left or Right");
   }
 }
 
